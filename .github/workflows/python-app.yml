@@ -37,3 +37,18 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+    - name: Run mypy
+      run: |
+        mypy main/
+        mypy tests/
+        mypy main.py
+    - name: Run black
+      run: |
+        black --check --diff main/
+        black --check --diff tests/
+        black --check --diff main.py
+    - name: Run isort
+      run: |
+        isort --check-only --diff --profile black main/
+        isort --check-only --diff --profile black tests/
+        isort --check-only --diff --profile black main.py
